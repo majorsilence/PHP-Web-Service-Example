@@ -20,7 +20,7 @@ function get_connection()
 	*/
 	
 	// SQLite
-	$dbh = new PDO("sqlite:example-sqlite.sdb");
+	$dbh = new PDO("sqlite:/Full/Path/To/example-sqlite.sdb");
 	$dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
 	return $dbh;

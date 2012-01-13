@@ -18,16 +18,10 @@ try
 	$stmt->bindParam(':querylimit', $limit, PDO::PARAM_INT); 
 	$stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach($result as $key=>$val)
-    {
-		// Notice that it is Product without an S
-		$results[] = array('Product', array($key, $val));
-    }
 	
 	header('Content-type: application/json');
 	// Notice that it is Products with an S
-	echo json_encode(array('Products'=>$results));
+	echo json_encode($result);
 }
 catch(Exception $e)
 {

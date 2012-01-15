@@ -1,0 +1,3 @@
+#Enable Basic Authenication when php is running in cgi mode
+RewriteEngine on
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]

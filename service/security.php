@@ -7,6 +7,7 @@ require_once("connection_info.php");
 // it to your own htaccess file.  Remember to rename it to .htaccess.
 
 function do_login_basic(){	
+	
 	$username = null;
 	$password = null;
 
@@ -16,36 +17,27 @@ function do_login_basic(){
 	} 
 	elseif (isset($_SERVER['HTTP_AUTHORIZATION'])){ 
 		// php in cgi mode.  using .htaccess file rewrite
-		list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) =
+		list($username, $password) = 
 			explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
 
-		if( strlen($_SERVER['PHP_AUTH_USER']) == 0 || strlen($_SERVER['PHP_AUTH_PW']) == 0 )
+		if( strlen($username) == 0 || strlen($password) == 0 )
 		{
-		    unset($_SERVER['PHP_AUTH_USER']);
-		    unset($_SERVER['PHP_AUTH_PW']);	
-			prompt_login('You must enter a username and password to use this service. Is this service running in CGI MODE?');
+			return false;
 		}
-		$username = $_SERVER['PHP_AUTH_USER'];
-		$password = $_SERVER['PHP_AUTH_PW'];
 	}
 	else {
-		prompt_login('No username and password entered.');
+		return false;
 	}
 
 	// This is were you should check against you user database if the
 	// username and password combination is correct.
-	if ($username != "testuser" and $password != "testpassword"){
-		prompt_login("Incorrect username password combination.");
+	if ($username == "testuser" and $password == "testpassword"){
+		return true;
 	}
 
+	return false;
 }
 
-function prompt_login($msg){
-	header('WWW-Authenticate: Basic realm="Test Authentication"');
-	header('HTTP/1.0 401 Unauthorized');
-	echo $msg;
-	exit;
-}
 
 
 ?>

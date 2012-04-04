@@ -18,9 +18,9 @@ function get_data()
 		    'content' => $postdata
 		)
 	);
-	// End POST parameter
-
+	
 	$context = stream_context_create($opts);
+	// End POST parameter
 
 	$url = "http://the-path-to-service.com/test_service.php";
 	$json_str = file_get_contents($url, false, $context);

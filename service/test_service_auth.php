@@ -16,7 +16,7 @@ try{
 }
 catch(Exception $e){
 	print "Error!: " . $e->getMessage() . "<br/>";
-    die();
+	die();
 }
 
 try{
@@ -35,7 +35,7 @@ try{
 	$stmt = $dbh->prepare($sql);
 	$stmt->bindParam(':querylimit', $limit, PDO::PARAM_INT); 
 	$stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
 	header('Content-type: application/json');
 	// Notice that it is Products with an S
@@ -43,7 +43,7 @@ try{
 }
 catch(Exception $e){
 	print "Error!: " . $e->getMessage() . "<br/>";
-    die();
+	die();
 }
 
 ?>

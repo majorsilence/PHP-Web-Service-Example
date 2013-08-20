@@ -9,9 +9,9 @@ function get_data()
 
 	// Use POST instead of GET to set parameter.
 	$postdata = http_build_query(
-    array(
-        'limit' => '100'
-    	)
+            array(
+                'limit' => '100'
+    	    )
 	);
 
 	$opts = array('http' =>
